@@ -1,5 +1,19 @@
 /*targets any class with a to do
 we made this class through JS*/
+h1{
+    text-align: center;
+}
+#RIP{
+    background-image: url("https://scontent-sea1-1.xx.fbcdn.net/v/t39.30808-6/248385829_10216125030878242_7373388912202685830_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=-FZYS_UAwRAAX-0KRkz&_nc_ht=scontent-sea1-1.xx&oh=00_AT-dSMO0Q9bgmRB6WEThf5crde8bLzu5HkQdUPczx4It2w&oe=6295C74E");
+    background-size: 350px;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+}
+body{
+    background-color: gray;
+}
+
 .todo{
     width: 20%;
     box-sizing: border-box;

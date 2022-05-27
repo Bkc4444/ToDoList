@@ -12,12 +12,17 @@ window.onload = function (){
     let addItem = document.getElementById("add");
     addItem.onclick = main;
 
-    loadSavedItem();
+    loadSavedItems();
 }
 
-function loadSavedItem(){
-    let item = getToDo(); // read it from web storage
-    displayToDoItem(item);
+function loadSavedItems(){
+    let itemArray = getToDoItems(); // read it from web storage
+
+    for(let i = 0; i < itemArray.length; i++){
+        let currItem = itemArray[i];
+        displayToDoItem(currItem);
+    }
+
 }
 
 function main(){
@@ -113,24 +118,33 @@ function markAsComplete(){
 // Task: Store ToDoItems in web stoage
 
 function saveToDo(item:ToDoItem):void{
-    // convert our ToDoItem to a string
-    let itemString = JSON.stringify(item);
+    //this in now an array
+    let currItems = getToDoItems();
+    if(currItems == null){ // No items found
+        currItems = new Array();
+    }
+    currItems.push(item); // add the new item to the curr item list
 
-    // this takes a key and a value
-    // how to save the string
-    localStorage.setItem("todokey", itemString);
+    let currItemsString = JSON.stringify(currItems);
+    localStorage.setItem(todokey, currItemsString);
+    // // convert our ToDoItem to a string
+    // let itemString = JSON.stringify(item);
+
+    // // this takes a key and a value
+    // // how to save the string
+    // localStorage.setItem("todokey", itemString);
 }
 
 const todokey = "todo";
 
 /**
- * Get stored ToDo item or return null if
- * none is found
+ * Get stored ToDo items or return null if
+ * none are found
  * @returns 
  */
 
-function getToDo():ToDoItem{
+function getToDoItems():ToDoItem[]{
     let itemString = localStorage.getItem("todokey");
-    let item:ToDoItem = JSON.parse(itemString);
+    let item:ToDoItem[] = JSON.parse(itemString);
     return item; 
 }
